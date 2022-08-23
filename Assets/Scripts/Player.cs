@@ -8,13 +8,15 @@ public class Player : MonoBehaviour
     public AudioClip firearm;
     AudioSource asource;
     float hp = 100;
-    Image imgHP;
+    Image imgHP; 
+    public GameObject text1, button1;
     
     // Start is called before the first frame update
     void Start()
     {
         asource = GetComponent<AudioSource>();
         imgHP =  GameObject.Find("HP").GetComponent<Image>();
+
     }
 
     // Update is called once per frame
@@ -25,6 +27,10 @@ public class Player : MonoBehaviour
             asource.PlayOneShot(firearm);
         }
         imgHP.fillAmount = hp / 100;
+        if (hp <= 0){
+            text1.SetActive(true);
+            button1.SetActive(true);
+        }
     }
 
     void OnTriggerEnter(Collider other)
