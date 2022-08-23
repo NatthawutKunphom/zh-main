@@ -25,6 +25,15 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             asource.PlayOneShot(firearm);
+            Ray ray;
+            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.CompareTag("Zombie")){
+                    Debug.Log("Hit a zombie");
+                }
+            }
         }
         imgHP.fillAmount = hp / 100;
         if (hp <= 0){
