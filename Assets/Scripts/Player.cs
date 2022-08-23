@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     float hp = 100;
     Image imgHP; 
     public GameObject text1, button1;
+    Zombie MyZombie;
     
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,13 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.gameObject.CompareTag("Zombie")){
-                    Debug.Log("Hit a zombie");
+                    MyZombie = hit.collider.gameObject.GetComponent<Zombie>();
+                    MyZombie.zombieHP -= 25;
+                    if (MyZombie.zombieHP <= 0)
+                    {
+                        Animator anim = MyZombie.GetComponent<Animator>();
+                        anim.SetFloat("hp" , 0);
+                    }
                 }
             }
         }

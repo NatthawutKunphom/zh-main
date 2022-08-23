@@ -8,6 +8,7 @@ public class Zombie : MonoBehaviour
     NavMeshAgent agent;
     GameObject player;
     Animator anim;
+    public float zombieHP = 100;
 
     void Start()
     {
@@ -23,4 +24,5 @@ public class Zombie : MonoBehaviour
         if (dist < 2.5f) agent.speed = 0;
         else agent.SetDestination(player.transform.position);
     }
+
 }
