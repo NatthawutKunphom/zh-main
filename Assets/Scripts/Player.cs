@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -36,7 +37,9 @@ public class Player : MonoBehaviour
                     MyZombie.zombieHP -= 25;
                     if (MyZombie.zombieHP <= 0)
                     {
+                        NavMeshAgent agent = MyZombie.GetComponent<NavMeshAgent>();
                         Animator anim = MyZombie.GetComponent<Animator>();
+                        agent .speed = 0;
                         anim.SetFloat("hp" , 0);
                     }
                 }
